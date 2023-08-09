@@ -32,6 +32,12 @@ const logger = winston.createLogger({
 });
 
 try {
+    console.log({
+        host: process.env.ESL_HOST,
+        port: process.env.ESL_PORT,
+        password: process.env.ESL_PASSWORD,
+    })
+
     const connection = new modesl.Connection(process.env.ESL_HOST, process.env.ESL_PORT, process.env.ESL_PASSWORD, function() {
         logger.info('Connected to FreeSWITCH ESL.');
     });
