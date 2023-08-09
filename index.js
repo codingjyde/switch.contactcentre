@@ -32,7 +32,7 @@ const logger = winston.createLogger({
 });
 
 try {
-    const connection = new modesl.Connection('localhost', 8021, 'ClueCon', function() {
+    const connection = new modesl.Connection(process.env.ESL_HOST, process.env.ESL_PORT, process.env.ESL_PASSWORD, function() {
         logger.info('Connected to FreeSWITCH ESL.');
     });
 
