@@ -1,0 +1,29 @@
+# Dependencies
+/node_modules
+
+# Log files
+*.log
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
+
+# Debug logs
+npm-debug.log*
+
+# Build directories
+/dist
+
+# IDE - Visual Studio Code
+.vscode/
+
+# Other IDE and editor specific settings
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Mac system files
+.DS_Store
