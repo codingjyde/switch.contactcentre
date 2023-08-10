@@ -41,11 +41,11 @@ try {
         logger.info(`${ appName } will now exit.`);    
     });
 
-    connection.on('end', () => {
+    connection.on('esl::end', () => {
         logger.info('Connection to FreeSWITCH ESL closed.');    
     });
 
-    connection.on('ready', () => {
+    connection.on('esl::ready', () => {
         logger.info('Connected to FreeSWITCH ESL.');
 
         connection.api('sofia xmlstatus', function(res) {
