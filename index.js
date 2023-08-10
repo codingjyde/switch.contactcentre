@@ -33,7 +33,7 @@ const logger = winston.createLogger({
 
 try {
     const connection = new modesl.Connection(process.env.ESL_HOST, process.env.ESL_PORT, process.env.ESL_PASSWORD, function() {
-        logger.info('Connected to FreeSWITCH ESL.');
+        
     });
 
     connection.on("error", (error) => {
@@ -49,6 +49,11 @@ try {
         logger.info('Connected to FreeSWITCH ESL.');
 
         connection.api('sofia xmlstatus', function(res) {
+            // Process the response, which is in XML format
+            console.log(res.getBody());
+        });
+
+        connection.api('status', function(res) {
             // Process the response, which is in XML format
             console.log(res.getBody());
         });
