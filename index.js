@@ -32,12 +32,6 @@ const logger = winston.createLogger({
 });
 
 try {
-    console.log({
-        host: process.env.ESL_HOST,
-        port: process.env.ESL_PORT,
-        password: process.env.ESL_PASSWORD,
-    })
-
     const connection = new modesl.Connection(process.env.ESL_HOST, process.env.ESL_PORT, process.env.ESL_PASSWORD, function() {
         logger.info('Connected to FreeSWITCH ESL.');
     });
@@ -53,6 +47,11 @@ try {
 
     connection.on('ready', () => {
         logger.info('Connected to FreeSWITCH ESL.');
+
+        connection.api('sofia xmlstatus', function(res) {
+            // Process the response, which is in XML format
+            console.log(res.getBody());
+        });
     
         // Global ESL events subscription (events clients can subscribe to)
         const subscriptions = process.env.EVENTS_TO_SUBSCRIBE ? process.env.EVENTS_TO_SUBSCRIBE.split(',') : [];
@@ -98,4 +97,6 @@ try {
     });
 } catch (error) {
     logger.error("An error occured", error);    
+
+    process.exit(1);
 }
